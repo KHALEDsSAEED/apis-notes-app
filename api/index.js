@@ -58,6 +58,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+swaggerUI.setup(specs, { customCssUrl: CSS_URL });
 
 
