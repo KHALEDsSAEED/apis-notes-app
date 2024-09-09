@@ -2,8 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
-import swaggerUI from "swagger-ui-express";
-import swaggerJsDoc from "swagger-jsdoc";
+import swaggerDocs from '../swagger.js';
 
 // Import the routes
 import notesRoute from './routes/note.route.js';
@@ -15,9 +14,6 @@ import { verifyToken } from './utils/verifyToken.js';
 
 // Load the environment variables
 dotenv.config();
-
-
-const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.17.14/swagger-ui.min.css";
 
 // Connect to the database using mongoose
 mongoose
@@ -43,20 +39,13 @@ app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
 
-const specs = swaggerJsDoc(options);
-// app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
-
-app.use(
-    "/api-docs",
-    swaggerUI.serve,
-    swaggerUI.setup(specs, { customCssUrl: CSS_URL })
-);
+swaggerDocs(app);
 
 
 // Use the notes route for /api/notes requests and verify the token for authentication
 app.use('/api/notes', verifyToken, notesRoute);
 app.use('/api/auth', authRoute);
-app.use('/api/user', verifyToken, userRoute);
+app.use('/api/user',verifyToken, userRoute);
 
 
 // Error handling middleware 
