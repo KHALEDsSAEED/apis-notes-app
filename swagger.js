@@ -16,7 +16,7 @@ const swaggerOptions = {
                 description: 'Production server',
             },
             {
-                url: 'https://apis-notes-8loxul5tg-khaleds-projects-14919fe2.vercel.app//',
+                url: 'https://apis-notes-app.vercel.app/',
                 description: 'Production server',
             },
             {
